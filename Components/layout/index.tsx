@@ -3,25 +3,23 @@
 import { ReactNode } from "react";
 import Footer from "./footer";
 import Header from "./header";
+import styles from "../../styles/App.module.css"
 
 
-interface LayoutProps  {
+interface LayoutProps {
     children?: ReactNode;
-  };
+};
 
 
 export default function Layout({ children, ...props }: LayoutProps) {
-    // styles the main html tag
-    const styles = {
-        display: "flex",
-        flexDirection: "row"
-    };
     return (
         <>
             <Header />
+            <div className={styles.mainContainer}>
             <main {...props}>
                 {children}
             </main>
+            </div>
             <Footer />
         </>
     );
