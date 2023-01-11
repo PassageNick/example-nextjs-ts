@@ -48,13 +48,9 @@ const Dashboard: NextPage<DashboardProps> = ({ isAuthorized, username }) => {
 export const getServerSideProps: GetServerSideProps<DashboardProps> = async (context: GetServerSidePropsContext) => {
     // getServerSideProps runs server-side only and will never execute on the client browser
     // this allows the safe use of a private Passage API Key
-
-    // return { props: {isAuthorized: true, username: 'Marvin Martian'} };
-
-
     const passage = new Passage({
-      appID: process.env.PASSAGE_APP_ID,
-      apiKey: process.env.PASSAGE_API_KEY,
+      appID: process.env.PASSAGE_APP_ID!,
+      apiKey: process.env.PASSAGE_API_KEY!,
       authStrategy: "HEADER",
     });
     try {
