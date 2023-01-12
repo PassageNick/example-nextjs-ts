@@ -8,8 +8,8 @@ import styles from '../styles/App.module.css'
 
 
 interface DashboardProps {
-    isAuthorized: ReactNode;
-    username: ReactNode;
+    isAuthorized: boolean;
+    username: string;
 };
 
 const Dashboard: NextPage<DashboardProps> = ({ isAuthorized, username }) => {
