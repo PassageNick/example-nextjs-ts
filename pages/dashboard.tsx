@@ -10,15 +10,23 @@ import styles from '../styles/App.module.css'
 interface DashboardProps {
     isAuthorized: boolean;
     username: string;
+    appID: string;
 };
 
-const Dashboard: NextPage<DashboardProps> = ({ isAuthorized, username }) => {
+const Dashboard: NextPage<DashboardProps> = ({ isAuthorized, username, appID }) => {
+
+  useEffect(()=>{
+    require('@passageidentity/passage-elements/passage-profile');
+}, []);
 
     const authorizedBody =
         <>
-            You successfully signed in with Passage.
-            <br /><br />
-            Your username is: <b>{username}</b>
+            <p>You successfully signed in with Passage.</p>
+            
+            <p>Your username is: <b>{username}</b></p>
+
+            <p><passage-profile app-id={appID}></passage-profile></p>
+
         </>
 
     const unauthorizedBody =
@@ -65,11 +73,11 @@ export const getServerSideProps: GetServerSideProps<DashboardProps> = async (con
         // user is authenticated
         const { email, phone } = await passage.user.get(userID);
         const identifier = email ? email : phone; 
-        return { props: {isAuthorized: true, username: identifier} };
+        return { props: {isAuthorized: true, username: identifier, appID: passage.appID} };
       }
     } catch (error) {
       // authentication failed
-      return { props: {isAuthorized: false, username: ''} };
+      return { props: {isAuthorized: false, username: '', appID: passage.appID} };
     }
   }
   
