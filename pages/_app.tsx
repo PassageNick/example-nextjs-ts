@@ -10,10 +10,10 @@ type AppPropsWithLayout = AppProps & {
 }
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-return (
-  <Layout>
-    <Component {...pageProps} />
-  </Layout>
-)
-  
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+
 }

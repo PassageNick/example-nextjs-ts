@@ -16,9 +16,9 @@ export default function Layout({ children, ...props }: LayoutProps) {
         <>
             <Header />
             <div className={styles.mainContainer}>
-            <main>
-                {children}
-            </main>
+                <main>
+                    {children}
+                </main>
             </div>
             <Footer />
         </>
